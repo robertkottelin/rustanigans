@@ -2,6 +2,7 @@ use crate::{WebSocketReceiver, WebSocketSender};
 use async_std::sync::Arc;
 use futures::{SinkExt, StreamExt};
 use tide_websockets::{WebSocketConnection, WebSocket};
+use tide_websockets::tungstenite::Message;
 
 pub fn split(
     stream: tide_websockets::WebSocketConnection,
@@ -10,7 +11,7 @@ pub fn split(
     let (sink, stream) = stream.split();
 
     async_std::task::spawn(async move {
-        let mut sink = sink;
+        let mut sink: futures::stream::SplitSink<WebSocketConnection, Message> = sink;
         let mut stream = stream;
 
         while let Some(msg) = stream.next().await {
