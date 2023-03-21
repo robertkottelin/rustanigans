@@ -1,0 +1,16 @@
+[package]
+name = "rustanigans"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tide = "0.16.0"
+tide-websockets = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0.94"
+async-std = { version = "1.6.0", features = ["attributes"] }
+async-tungstenite = "0.12.0"
+futures = "0.3"
+rusqlite = "0.26.0"
